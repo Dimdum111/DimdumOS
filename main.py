@@ -22,21 +22,29 @@ for i in range(5): # Startup Led Flash
     time.sleep(0.3)
     led_pin.value(0)
     time.sleep(0.3)
-    def LedCommandIndicator(delay,times):
-        for i in range(times):
-            led_pin.value(1)
-            time.sleep(delay)
-            led_pin.value(0)
-            time.sleep(delay)
+def LedCommandIndicator(delay,times):
+    for i in range(times):
+        led_pin.value(1)
+        time.sleep(delay)
+        led_pin.value(0)
+        time.sleep(delay)
 
 print("--=DimdumOS Booted!=--") # Boot info
 print("--=[SYSINFO]--")
 print(f"Temp: {temp}\nUptime: {uptime // 1000}S\nRam: {gc.mem_free()}/{gc.mem_alloc() + gc.mem_free()}\nCpu Freq: {machine.freq() / 1000000} MHz")
-Username = input("\nWelcome to DimdumOS. A OS for ESP32.\nhelp for all avalible commands\nEnter your Username: ")
+print("\nWelcome to DimdumOS. A OS for ESP32.\nhelp for all avalible commands.")
+while True:
+    Username = input("Enter your Username: ").strip()
+    if Username == "":
+        print("Username cannot be empty.")
+        continue
+    break
 
 while True: # Start Console Loop
-    Cmd = input(f"{Username}@DimdumOS:~$ ") # Command line
-    if Cmd == "ls": # Ls Command
+    Cmd = input(f"{Username}@DimdumOS:~$ ").strip() # Command line
+    if Cmd == "":
+        continue
+    elif Cmd == "ls": # Ls Command
         _thread.start_new_thread(LedCommandIndicator, (0.5, 2))
         files = os.listdir()
         print("\n".join(files)) # List all avalible files
