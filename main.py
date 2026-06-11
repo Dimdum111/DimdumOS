@@ -5,6 +5,7 @@ import time
 import esp32
 import os
 import _thread
+import gc
 # Variables
 temp = (esp32.raw_temperature() - 32)/1.8
 uptime = uptime_ms = time.ticks_ms() // 1000
@@ -39,7 +40,7 @@ def LedCommandIndicator(delay,times):
 
 print("--=DimdumOS Booted!=--") # Boot info
 print("--=[SYSINFO]--")
-print(f"Temp: {temp}\nUptime: {uptime // 1000}S\nRam: {gc.mem_free()}/{gc.mem_alloc() + gc.mem_free()}\nCpu Freq: {machine.freq() / 1000000} MHz")
+print(f"Temp: {temp}\nUptime: {uptime}S\nRam: {gc.mem_free()}/{gc.mem_alloc() + gc.mem_free()}\nCpu Freq: {machine.freq() / 1000000} MHz")
 print("\nWelcome to DimdumOS. A OS for ESP32.\nhelp for all avalible commands.")
 while True:
     Username = input("Enter your Username: ").strip()
