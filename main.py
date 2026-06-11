@@ -11,7 +11,7 @@ temp = (esp32.raw_temperature() - 32)/1.8
 uptime = uptime_ms = time.ticks_ms() // 1000
 led_pin = Pin(2, Pin.OUT)
 Boot = Pin(0, Pin.IN, Pin.PULL_UP)
-DimdumOsVer = "DimdumOs 1.2"
+DimdumOsVer = "DimdumOs 1.2.1"
 HelpList = """--=[AVAILABLE COMMANDS]=--
 ls - list all files in this directory.
 help - all available commands.
